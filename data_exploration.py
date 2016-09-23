@@ -8,6 +8,8 @@ from sklearn.linear_model import LinearRegression
 branches = pd.read_csv('Branches_with_demographics.csv')
 # remove reference library because it's not a normal branch
 branches = branches[branches.ID != 'TRL']
+# also remove North York Central??
+branches = branches[branches.ID != 'NYCL']
 
 # convert text columns to floats
 numeric_columns = ['Programs_Cultural_2015', 'Attendance_Cultural_2015',
@@ -53,8 +55,9 @@ branches['pct_not_in_labour_force'] = branches['not_in_labour_force'] / \
                                       branches['census_population']
 
 
+
 mod1 = LinearRegression()
 mod1.fit(branches[['pct_low_income', 'Workstations', 'collection_size',
-                   'visits_2015', ]])
+                   'visits_2015', '']])
 
 
